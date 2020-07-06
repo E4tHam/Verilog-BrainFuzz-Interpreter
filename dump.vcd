@@ -1,0 +1,20 @@
+$date
+	Sat Jul  4 11:49:20 2020
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module brainfuzz_tb $end
+$var integer 32 ! i [31:0] $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx !
+$end
+#1
+b10000 !
+#2
