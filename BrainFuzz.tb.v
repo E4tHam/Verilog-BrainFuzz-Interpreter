@@ -12,13 +12,13 @@ reg ROM_CEb = 1'b1 ;
 
 reg RAM_CEb = 1'b1 ;
 reg RAM_WEb = 1'b1 ;
-reg RAM_OEb = 1'b1 ;
+reg RAM_OEb = 1'b0 ;
 
-// ROM_chip ROM (
-//     .address ( address ) ,
-//     .data ( data )       ,
-//     .CEb ( ROM_CEb )
-// );
+ROM_chip ROM (
+    .address ( address ) ,
+    .data ( data )       ,
+    .CEb ( ROM_CEb )
+);
 
 RAM_chip RAM (
     .address ( address ) ,
@@ -31,9 +31,10 @@ RAM_chip RAM (
 initial begin 
 $dumpfile ( "dump.vcd" ) ;
 $dumpvars ;
-#10
 //\\ =========================== \\//
 
+ROM_CEb = 0;
+#1
 
 $display ( data ) ;
 

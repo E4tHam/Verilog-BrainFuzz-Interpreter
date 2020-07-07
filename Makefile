@@ -27,9 +27,6 @@ COUTPUT = compiler.out			#COMPILER OUTPUT
 # #MAKE DIRECTIVES
 all: clean ${EXE}
 
-rom_builder:
-	
-
 ${EXE} : ${TESTBENCH}
 	$(COMPILER) ${COFLAGS} $@ $^
 
