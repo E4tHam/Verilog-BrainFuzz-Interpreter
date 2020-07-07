@@ -1,44 +1,45 @@
 // BrainFuzz.tb.v
 
-// `include "BrainFuzz.v"
+`include "attachments.v"
 
-module memory () ;
-
-endmodule
 
 module brainfuzz_tb () ;
 
+reg [3:0] address = 4'b0 ;
+wire [7:0] data ;
 
-integer i ;
+reg ROM_CEb = 1'b1 ;
 
-reg [2:0] ROM [0:15] ;
-reg [3:0] RAM [0:15] ;
+reg RAM_CEb = 1'b1 ;
+reg RAM_WEb = 1'b1 ;
+reg RAM_OEb = 1'b1 ;
 
+// ROM_chip ROM (
+//     .address ( address ) ,
+//     .data ( data )       ,
+//     .CEb ( ROM_CEb )
+// );
+
+RAM_chip RAM (
+    .address ( address ) ,
+    .data ( data )       ,
+    .CEb ( RAM_CEb )     ,
+    .WEb ( RAM_WEb )     ,
+    .OEb ( RAM_OEb )
+);
 
 initial begin 
-//\\ =========================== \\//
-
-
 $dumpfile ( "dump.vcd" ) ;
 $dumpvars ;
+#10
+//\\ =========================== \\//
 
-$display( "Loading rom..." );
-$readmemb( "ROM.mem" , ROM );
-$display( "done!" );
 
-for (i = 0; i < 16; i = i + 1) begin
-    RAM[i] = 0;
-end
+$display ( data ) ;
 
-for (i = 0; i < 16; i = i + 1) begin
-    $display( RAM[i] ) ;
-end
-
-#1
-
-$finish ;
 
 //\\ =========================== \\//
+$finish ;
 end
 
 endmodule
