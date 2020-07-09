@@ -1,6 +1,5 @@
 // attachments.v
 
-
 module ROM_chip (
     input  [3:0] address , // Address input
     output [7:0] data    , // Data output
@@ -10,7 +9,7 @@ module ROM_chip (
     // 8 bit words at 16 addresses
     reg [7:0] mem [0:15] ;
 
-    assign data = ( !CEb ) ? mem[address] : 8'bzzzzzzzz ;
+    assign data = ( !CEb ) ? mem[address] : 8'b zzzz_zzzz ;
 
     initial begin
         $readmemb( "ROM.mem" , mem ); // ROM.mem is memory file
@@ -30,7 +29,7 @@ module RAM_chip (
     // 8 bit words at 16 addresses
     reg [7:0] mem [0:15] ;
 
-    // if CE and OE, data = mem[address] ; else set it to zzzzzzzz
+    // if CE and OE, data = mem[address] ; else set it to zzzz_zzzz
     assign data = ( !CEb && WEb && !OEb ) ? mem[address] : 8'b zzzz_zzzz ;
 
     // if CE and WE, mem[address] = data
